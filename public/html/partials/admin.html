@@ -1,0 +1,316 @@
+<!-- The controller is set in app.js. DO NOT set it here or it will be instantiated twice -->
+<div class="row">
+  <div class="box box-primary">
+    <div class="box-header with-border">
+      <h2>Administrator interface</h2>
+    </div>
+    <div class="box-body">
+      <div class="row">
+
+
+	<!-- Left column: List/Add/Edit bundles information. -->
+        <div class="col-md-6">
+
+          <!-- Add/Edit Bundle View -->
+          <form class="form-horizontal"
+		ng-show="viewMode === 'addBundleMode' || viewMode === 'editBundleMode'">
+            <h3>Add/Edit Bundle Information</h3>
+            <div class="form-group">
+              <label for="inputBundleName" class="col-sm-2 control-label">Bundle Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputBundleName"
+		       placeholder="Name" ng-model="temporaryBundle.name">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputBundleInformation" class="col-sm-2 control-label">Information</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputBundleInformation"
+		       placeholder="Information" ng-model="temporaryBundle.info">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputBundleImage" class="col-sm-2 control-label">Image</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputBundleImage"
+		       placeholder="Image" ng-model="temporaryBundle.image">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button class="btn btn-default" ng-click="saveBundle()">
+                  Save
+                </button>
+                <button class="btn btn-default" ng-click="cancelEditBundle()">
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </form>
+
+
+          <!-- Add/Edit Path View -->
+          <form class="form-horizontal"
+		ng-show="viewMode === 'addPathMode' || viewMode === 'editPathMode'">
+            <h3>Add/Edit Path</h3>
+            <div class="form-group">
+              <label for="inputPathName" class="col-sm-2 control-label">Path Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputPathName" placeholder="Name"
+		       ng-model="temporaryPath.name">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPathInformation" class="col-sm-2 control-label">Information</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputPathInformation"
+		       placeholder="Information" ng-model="temporaryPath.info">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPathImage" class="col-sm-2 control-label">Image</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputPathImage"
+		       placeholder="Image" ng-model="temporaryPath.image">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPathLength" class="col-sm-2 control-label">Length</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputPathLength"
+		       placeholder="Length" ng-model="temporaryPath.length">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPathDuration" class="col-sm-2 control-label">Duration</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputPathDuration"
+		       placeholder="Duration" ng-model="temporaryPath.duration">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPathPolyline" class="col-sm-2 control-label">Polyline</label>
+              <div class="col-sm-10">
+                <input type="textarea" class="form-control" id="inputPathPolyline"
+		       placeholder="{{temporaryPath.polyline}}" readonly>
+                <span id="helpBlockLng" class="help-block">
+		  Polyline is created/edited by placing/moving polyline point on map.
+		</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button class="btn btn-default" ng-click="savePath()">
+                  Save
+                </button>
+                <button class="btn btn-default" ng-click="cancelEditPath()">
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </form>
+
+
+          <!-- Add/Edit Place View -->
+          <form class="form-horizontal"
+		ng-show="viewMode === 'addPlaceMode' || viewMode === 'editPlaceMode'">
+            <h3>Add/Edit Place</h3>
+            <div class="form-group">
+              <label for="inputPlaceName" class="col-sm-2 control-label">Place Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputPlaceName"
+		       placeholder="Name" ng-model="temporaryPlace.name">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPlaceInformation" class="col-sm-2 control-label">Information</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputPlaceInformation"
+		       placeholder="Information" ng-model="temporaryPlace.info">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPlaceImage" class="col-sm-2 control-label">Image</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputPlaceImage"
+		       placeholder="Image" ng-model="temporaryPlace.image">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPlaceRadius" class="col-sm-2 control-label">Radius</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputPlaceRadius"
+		       placeholder="Radius" ng-model="temporaryPlace.radius">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPlaceLatitude" class="col-sm-2 control-label">Latitude</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputPlaceLatitude"
+		       placeholder="Latitude" ng-model="temporaryPlace.position.lat" readonly>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPlaceLongitude" class="col-sm-2 control-label">Longitude</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputPlaceLongitude"
+		       placeholder="Longitude" ng-model="temporaryPlace.position.lng" readonly>
+                <span id="helpBlockLng" class="help-block">
+		  Latitude and Longitude are set/changed by placing/moving marker on map.
+		</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button class="btn btn-default" ng-click="savePlace()">
+                  Save
+                </button>
+                <button class="btn btn-default" ng-click="cancelEditPlace()">
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </form>
+
+
+          <!-- List Bundles View -->
+          <div class="row" ng-show="viewMode === 'listBundlesMode'">
+            <div class="col-md-12">
+              <button class="btn btn-primary" ng-click="newBundle()">
+                New Bundle
+              </button>
+            </div>
+          </div>
+          <div class="row" ng-show="viewMode === 'listBundlesMode'">
+            <div class="col-md-12">
+              <ul class="list-group">
+                <li id="repeat" ng-repeat="(id, bundle) in bundles | orderBy : 'name'"
+                    class="list-group-item">
+
+
+                  <!-- Bundle -->
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h2>{{bundle.name}}</h2>
+                    </div>
+                  </div>
+                  <div class="row" >
+                    <div class="col-md-6">
+                      <b>Information: </b>{{bundle.info}}<br/>
+                      <button class="btn btn-primary" ng-click="editBundle(bundle)">
+                        Edit Bundle
+                      </button>
+                      <button class="btn btn-danger" ng-click="deleteBundle(bundle)">
+                        Delete Bundle
+                      </button>
+                      <button class="btn btn-primary" ng-click="newPath(bundle)">
+                        Add Path
+                      </button>
+                    </div>
+                    <div class="col-md-6">
+                      <img ng-src="{{bundle.image}}" width="200" height="200"></img>
+                    </div>
+                  </div>
+
+
+                  <!-- Path -->
+                  <div class="row">
+                    <div class="col-md-12">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>Trails</th>
+                            <th>Places of interest</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr id="repeat" ng-repeat="path in bundle.paths | orderBy : 'name'">
+                            <td>
+                              <div class="row" >
+                                <div class="col-md-12">
+                                  <h3>{{path.name}}</h3>
+                                </div>
+                              </div>
+                              <div class="row" >
+                                <div class="col-md-6">
+                                  <b>Length: </b> {{path.length}} km<br/>
+                                  <b>Duration: </b> {{path.duration}} Hours<br/>
+                                  <b>Information: </b>{{path.info}}<br/>
+                                  <a href="" ng-click="showPathOnMap(path)">
+                                    <b>Show on map</b>
+                                  </a>
+                                </div>
+                                <div class="col-md-6">
+                                  <img ng-src="{{path.image}}" width="200" height="200"></img>
+                                </div>
+                              </div>
+                              <button class="btn btn-primary" ng-click="editPath(path)">
+                                Edit Path
+                              </button>
+                              <button class="btn btn-danger" ng-click="deletePath(path)">
+                                Delete Path
+                              </button>
+			      <button class="btn btn-primary" ng-click="newPlace(path)">
+				Add Place
+			      </button>
+                            </td>
+
+
+                            <!-- Place -->
+                            <td>
+                              <div id="repeat" ng-repeat="place in path.places | orderBy : 'name'">
+                                <div class="row" >
+                                  <div class="col-md-12">
+                                    <h3>{{place.name}}</h3>
+                                  </div>
+                                </div>
+                                <div class="row" >
+                                  <div class="col-md-6">
+                                    <b>Latitude: </b> {{place.position.lat}}<br/>
+                                    <b>Longitude: </b> {{place.position.lng}}<br/>
+                                    <b>Information: </b>{{place.info}}</br>
+                                    <a href="" ng-click="showPlaceOnMap(place)">
+                                      <b>Show on map</b>
+                                    </a>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <img ng-src="{{place.image}}" width="200" height="200"></img>
+                                  </div>
+                                  <div id="repeat" ng-repeat="media in place.medias | orderBy : 'name'">
+                                    {{media}}
+                                  </div>
+                                </div>
+				<button class="btn btn-primary" ng-click="editPlace(place)">
+                                  Edit Place
+				</button>
+				<button class="btn btn-danger" ng-click="deletePlace(place)">
+                                  Delete Place
+				</button>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                </li>
+              </ul>
+            </div> <!-- /.col -->
+          </div><!-- ./row -->
+        </div><!-- /.col -->
+
+
+	<!-- Right column: The Map -->
+        <div class="col-md-6">
+        <div id="adminMap"></div>
+        </div> <!-- /.col -->
+
+      </div> <!-- ./row -->
+    </div> <!-- ./box-body -->
+
+    <div class="box-footer">
+    </div> <!-- ./box-footer -->
+
+  </div> <!-- ./box -->
+</div><!-- /.row -->

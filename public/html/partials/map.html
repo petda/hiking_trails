@@ -1,0 +1,114 @@
+<!-- The controller is set in app.js. DO NOT set it here or it will be instantiated twice -->
+<div class="row">
+  <div class="box box-primary">
+    <div class="box-header with-border">
+    </div>
+
+    <div class="box-body">
+      <div class="row">
+
+	<!-- Left column: Information about bundles.-->
+        <div class="col-md-6">
+          <ul class="list-group">
+            <li id="repeat" ng-repeat="(id, bundle) in bundles | orderBy : 'name'"
+		class="list-group-item">
+
+              <!-- Bundle -->
+              <div class="row">
+                <div class="col-md-12">
+                  <h2>{{bundle.name}}</h2>
+                </div>
+              </div>
+              <div class="row" >
+                <div class="col-md-6">
+                  <b>Information: </b>{{bundle.info}}<br/>
+                </div>
+                <div class="col-md-6">
+                  <img ng-src="{{bundle.image}}" width="200" height="200"></img>
+                </div>
+              </div>
+
+
+              <!-- Path -->
+              <div class="row">
+                <div class="col-md-12">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Trails</th>
+                        <th>Places of interest</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr id="repeat" ng-repeat="path in bundle.paths | orderBy : 'name'">
+                        <td>
+                          <div class="row" >
+                            <div class="col-md-12">
+                              <h3>{{path.name}}</h3>
+                            </div>
+                          </div>
+                          <div class="row" >
+                            <div class="col-md-6">
+                              <b>Length: </b> {{path.length}} km<br/>
+                              <b>Duration: </b> {{path.duration}} Hours<br/>
+                              <b>Information: </b>{{path.info}}<br/>
+                              <a href="#" ng-click="showPathOnMap(path)"><b>Show on map</b></a>
+                            </div>
+                            <div class="col-md-6">
+                              <img ng-src="{{path.image}}" width="200" height="200"></img>
+                            </div>
+                          </div>
+                        </td>
+
+
+                        <!-- Place -->
+                        <td>
+                          <div id="repeat" ng-repeat="place in path.places | orderBy : 'name'">
+                            <div class="row" >
+                              <div class="col-md-12">
+                                <h3>{{place.name}}</h3>
+                              </div>
+                            </div>
+                            <div class="row" >
+                              <div class="col-md-6">
+                                <b>Latitude: </b> {{place.position.lat}}<br/>
+                                <b>Longitude: </b> {{place.position.lng}}<br/>
+                                <b>Information: </b>{{place.info}}</br>
+                                <a href="#" ng-click="showPlaceOnMap(place)"><b>Show on map</b></a>
+                              </div>
+                              <div class="col-md-6">
+                                <img ng-src="{{path.image}}" width="200" height="200"></img>
+                              </div>
+                              <div id="repeat" ng-repeat="media in place.medias | orderBy : 'name'">
+                                {{media}}
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+
+            </li>
+          </ul>
+        </div> <!-- /.col -->
+
+
+   	<!-- The Map -->
+	<!-- Right column -->
+	<div class="col-md-6">
+        <div id="map"></div>
+        </div> <!-- /.col -->
+
+
+      </div> <!-- ./row -->
+    </div> <!-- ./box-body -->
+
+    <div class="box-footer">
+    </div> <!-- ./box-footer -->
+
+  </div> <!-- ./box -->
+</div><!-- /.row -->
