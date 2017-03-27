@@ -11,7 +11,7 @@ Follow instructions on the [official golang website](https://golang.org/dl/) to 
 
 The backend server uses a Golang wrapper for sqlite3, to connect to an SQlite3 database. This wrapper uses CGO, and therefore some version of gcc needs to be installed on the system.
 
-### Insalling gcc on Linux
+### Installing gcc on Linux
 
 Install gcc if not already installed on system:
 
@@ -19,11 +19,11 @@ Install gcc if not already installed on system:
 sudo apt get install build-essential
 ```
 
-### Insalling gcc on OS X
+### Installing gcc on OS X
 
 If you dont have gcc installed on your system then run `xcode-select --install` and follow the guide.
 
-### Insalling gcc on Windows
+### Installing gcc on Windows
 
 In order to use cgo on Windows, you'll need to install a gcc compiler (for instance, [mingw-w64](http://mingw-w64.org/doku.php)) and have gcc.exe (etc.) in your PATH environment variable.
 
