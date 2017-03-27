@@ -30,13 +30,13 @@ In order to use cgo on Windows, you'll need to install a gcc compiler (for insta
 
 ### Building application
 
-Golang expects the go files to be located under `$GOPATH/src/github.com/petda/hiking_trails`.
+Golang expects the go files to be located under `$GOPATH/src/hiking_trails`.
 If this repository has been checked out to some other path, then move the files to the
 correct directory first, then change to that directory.
 
 ```
-mv <current_path> $GOPATH/src/github.com/petda/hiking_trails
-cd $GOPATH/src/github.com/petda/hiking_trails
+mv <current_path> $GOPATH/src/hiking_trails
+cd $GOPATH/src/hiking_trails
 ```
 
 Fetch application go dependencies:
